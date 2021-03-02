@@ -8,7 +8,8 @@ class Sort(models.Model):
     )
 
     result = models.FileField(
-        'Result file'
+        'Result file',
+        default='',
     )
 
     speed = models.CharField(
