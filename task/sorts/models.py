@@ -17,8 +17,16 @@ class Sort(models.Model):
         default='',
     )
 
+    CHOICES = [
+        ('Bubble sort', 'Bubble sort'),
+        ('Optimized Bubble sort', 'Optimized Bubble sort'),
+        ('Insertion sort', 'Insertion sort'),
+        ('Merge sort', 'Merge sort'),
+    ]
+
     type = models.CharField(
         'Type',
+        choices=CHOICES,
         max_length=100,
         default='',
     )
