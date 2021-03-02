@@ -28,4 +28,5 @@ class Sort(models.Model):
 
 
 class SearchSortType(admin.ModelAdmin):
-    search_fields = ['type']
+    search_fields = ['initial', 'result', 'speed', 'type']
+    list_filter = ['type']
