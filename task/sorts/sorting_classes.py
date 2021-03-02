@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from decorators import measure
+from .decorators import measure
 
 
 class Sort(ABC):
@@ -90,13 +90,14 @@ class MergeSort(Sort):
 
 
 def read_file(file):
-    f = open(file, 'r')
-    numbers = f.read().strip().split()
-    return numbers
+    numbers = file.read().strip().split()
+    new_numbers = [int(number) for number in numbers]
+    return new_numbers
 
 
 def write_file(array, file):
     f = open(file, 'w')
-    f.write(" ".join(array))
+    new_array = [str(num) for num in array]
+    f.write(" ".join(new_array))
     f.close()
-    return f
+    return f.name
