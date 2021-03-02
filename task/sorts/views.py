@@ -8,3 +8,4 @@ class SortView(CreateView):
     template_name = 'sorts/index.html'
     model = Sort
     form_class = SortForm
+

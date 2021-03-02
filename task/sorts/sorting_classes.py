@@ -87,3 +87,16 @@ class MergeSort(Sort):
             return array
 
         return merge_sort(sorted_array)
+
+
+def read_file(file):
+    f = open(file, 'r')
+    numbers = f.read().strip().split()
+    return numbers
+
+
+def write_file(array, file):
+    f = open(file, 'w')
+    f.write(" ".join(array))
+    f.close()
+    return f
