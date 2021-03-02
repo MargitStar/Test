@@ -15,9 +15,20 @@ class BubbleSort(Sort):
         sorted_array = self.array[:]
         for i in range(len(sorted_array)):
             for j in range(len(sorted_array) - 1):
-                if sorted_array[j] > sorted_array[j+1]:
-                    sorted_array[j], sorted_array[j+1] = sorted_array[j+1], sorted_array[j]
+                if sorted_array[j] > sorted_array[j + 1]:
+                    sorted_array[j], sorted_array[j + 1] = sorted_array[j + 1], sorted_array[j]
         return sorted_array
 
 
-clas
+class OptimizedBubbleSort(Sort):
+    def sorted(self):
+        has_swapped = True
+        sorted_array = self.array[:]
+        while has_swapped:
+            has_swapped = False
+            for i in range(len(sorted_array) - 1):
+                if sorted_array[i] > sorted_array[i+1]:
+                    sorted_array[i], sorted_array[i + 1] = sorted_array[i + 1], sorted_array[i]
+                    has_swapped = True
+
+        return sorted_array
