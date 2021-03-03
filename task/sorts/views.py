@@ -1,7 +1,8 @@
 import os
 
 from django.shortcuts import render
-from django.core.files import File
+from django.core.files.base import ContentFile
+from django.core.files import File, uploadedfile
 from django.views.generic import UpdateView
 from .models import Sort
 from .forms import SortForm
@@ -29,20 +30,31 @@ class SortView(UpdateView):
             print(os.path.join(my_object.initial.name))
             if my_object.type == 'Bubble sort':
                 new_elements = sorting_classes.BubbleSort(elements).sorted()
-                my_object.result = (sorting_classes.write_file(new_elements,
-                                                               os.path.join(f'file{my_object.pk}.txt')))
+                buf = sorting_classes.write_file(new_elements)
+                buf.seek(0, 2)
+                result_file = uploadedfile.InMemoryUploadedFile(
+                    buf, 'result', f'file{my_object.pk}.txt', None, buf.tell(), None)
+                my_object.result.save(result_file.name, result_file)
             elif my_object.type == 'Optimized Bubble sort':
                 new_elements = sorting_classes.OptimizedBubbleSort(elements).sorted()
-                my_object.result = (sorting_classes.write_file(new_elements,
-                                                               os.path.join(
-                                                                   f'file{my_object.pk}.txt')))
+                buf = sorting_classes.write_file(new_elements)
+                buf.seek(0, 2)
+                result_file = uploadedfile.InMemoryUploadedFile(
+                    buf, 'result', f'file{my_object.pk}.txt', None, buf.tell(), None)
+                my_object.result.save(result_file.name, result_file)
             elif my_object.type == 'Merge sort':
                 new_elements = sorting_classes.MergeSort(elements).sorted()
-                my_object.result = (sorting_classes.write_file(new_elements,
-                                                               f'file{my_object.pk}.txt'))
+                buf = sorting_classes.write_file(new_elements)
+                buf.seek(0, 2)
+                result_file = uploadedfile.InMemoryUploadedFile(
+                    buf, 'result', f'file{my_object.pk}.txt', None, buf.tell(), None)
+                my_object.result.save(result_file.name, result_file)
             else:
                 new_elements = sorting_classes.InsertionSort(elements).sorted()
-                my_object.result = (sorting_classes.write_file(new_elements,
-                                                               os.path.join(f'file{my_object.pk}.txt')))
+                buf = sorting_classes.write_file(new_elements)
+                buf.seek(0, 2)
+                result_file = uploadedfile.InMemoryUploadedFile(
+                    buf, 'result', f'file{my_object.pk}.txt', None, buf.tell(), None)
+                my_object.result.save(result_file.name, result_file)
 
         return my_object

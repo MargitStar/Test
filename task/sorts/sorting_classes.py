@@ -95,9 +95,8 @@ def read_file(file):
     return new_numbers
 
 
-def write_file(array, file):
-    f = open(file, 'w')
-    new_array = [str(num) for num in array]
-    f.write(" ".join(new_array))
-    f.close()
-    return f.name
+def write_file(array):
+    from io import StringIO
+    new_array = [str(number) for number in array]
+    file = StringIO(" ".join(new_array))
+    return file
