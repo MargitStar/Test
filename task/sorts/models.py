@@ -12,12 +12,6 @@ class Sort(models.Model):
         default='',
     )
 
-    speed = models.CharField(
-        'Execution time',
-        max_length=100,
-        default='',
-    )
-
     CHOICES = [
         ('Bubble sort', 'Bubble sort'),
         ('Optimized Bubble sort', 'Optimized Bubble sort'),
